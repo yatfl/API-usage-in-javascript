@@ -34,7 +34,11 @@ async function fetchData() {
 	}
 	// if response is ok, rmb .json is a promise, hence the await
 	const data = await response.json();
-	console.log(data.id);
+	const pokemonSprite = data.sprites.front_default;
+	const imgElement = document.getElementById("pokemonSprite");
+
+	imgElement.src = pokemonSprite;
+	imgElement.style.display = "block";
     }
     catch(error) { // catch has one parameters
 	console.error(error);
