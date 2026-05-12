@@ -19,19 +19,22 @@ fetch("https://pokeapi.co/api/v2/pokemon/ditto") // the url, a promise
 /**
  * Async method
  */
-fetchData();
+// fetchData();
 
 async function fetchData() {
     try {
+	// get name from html
+	const pokemonName = document.getElementById("pokemonName").value.toLowerCase();
+
 	// wait for fetch() to return a promise (the response object)
-	const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
 
 	if(!response.ok) { // need to check if response is not ok
 	    throw new Error("Fetch failed");
 	}
 	// if response is ok, rmb .json is a promise, hence the await
 	const data = await response.json();
-	console.log(data.name);
+	console.log(data.id);
     }
     catch(error) { // catch has one parameters
 	console.error(error);
